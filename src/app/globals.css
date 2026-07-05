@@ -3,19 +3,143 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF7F2; /* Cream background */
+  --foreground: #2C1E1B; /* Deep coffee text */
+  --card-bg: #FFFFFF;
+  --gold-accent: #C9A227;
+  --gold-accent-light: #FAF6F0;
+  --gold-shimmer: linear-gradient(90deg, #C9A227 0%, #FAF6F0 50%, #C9A227 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --background: #191210; /* Dark coffee black */
+  --foreground: #FAF7F2; /* Cream text */
+  --card-bg: #231917;
+  --gold-accent: #E5C05B;
+  --gold-accent-light: #2C1E1B;
+  --gold-shimmer: linear-gradient(90deg, #E5C05B 0%, #2C1E1B 50%, #E5C05B 100%);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-poppins), sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom Selection Highlight */
+::selection {
+  background-color: #C9A227;
+  color: #FFFFFF;
+}
+
+.dark ::selection {
+  background-color: #E5C05B;
+  color: #191210;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6D4C41;
+  border-radius: 5px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A227;
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom utility for loading stroke animation */
+@keyframes drawStroke {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawStroke 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Shimmer Effect for Gold Text/Buttons */
+.shimmer-text {
+  background: linear-gradient(90deg, #C9A227 0%, #FFF5D1 25%, #C9A227 50%, #FFF5D1 75%, #C9A227 100%);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Pinterest Masonry layout utilities */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 1.5rem;
+  grid-auto-flow: dense;
+}
+
+/* Image copyright protection utilities */
+.no-download {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(250, 247, 242, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(109, 76, 65, 0.1);
+}
+
+.dark .glass-panel {
+  background: rgba(35, 25, 23, 0.7);
+  border: 1px solid rgba(229, 192, 91, 0.1);
 }
