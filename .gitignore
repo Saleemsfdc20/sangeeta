@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw high-res images (not needed for production web build, optimized webp is used)
+/public/img/upscayl_png_upscayl-standard-4x_5x/
