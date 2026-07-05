@@ -283,6 +283,7 @@ export default function Gallery() {
                 transition={{ duration: 0.3 }}
                 className="relative w-full h-full flex items-center justify-center"
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={activeLightboxItem.full}
                   alt={activeLightboxItem.title}
